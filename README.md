@@ -1,54 +1,183 @@
-# Sistem Pemesanan Tiket Bioskop Online (CineMax)
+# Proyek Akhir Pemrograman Berbasis Objek 1
 
-**Nama  :** Muhammad Rifky
-**NPM   :** 2410010072
-**Kelas :** 4A REG
-**Mata Kuliah :** Pemrograman Berbasis Objek 1
+Proyek ini adalah contoh aplikasi pengolahan data pemesanan tiket bioskop secara online (CineMax) menggunakan Java sebagai tugas akhir dari mata kuliah pemrograman berbasis objek 1.
 
-## Deskripsi Studi Kasus
+## Deskripsi
 
-Program ini adalah simulasi sistem pemesanan tiket bioskop online (**CineMax**) yang mengelola pemesanan tiket pada beberapa lokasi cabang bioskop (Banjarmasin & Banjarbaru). Sistem ini memungkinkan pengguna untuk memilih lokasi cabang terdekat, memilih film yang sedang tayang, melihat denah kursi studio secara interaktif berbasis teks, melakukan pemesanan kursi, hingga memproses pembayaran tiket menggunakan saldo akun pengguna.
+Aplikasi ini menerima input berupa pilihan lokasi cabang bioskop, pilihan film, serta baris dan nomor kursi yang diinginkan oleh penonton. Output yang diberikan berupa denah kursi bioskop interaktif serta cetakan struk tiket fisik otomatis jika saldo pengguna mencukupi untuk melakukan pembayaran. Proyek ini mencakup data 12 film terbaru serta 5 lokasi cabang operasional di wilayah Kalimantan Selatan.
 
-Studi kasus ini dipilih karena merepresentasikan alur bisnis nyata pada aplikasi hiburan digital, sekaligus menjadi sarana yang natural untuk menerapkan konsep **inheritance** dan **polymorphism** — karena setiap jenis studio (Reguler & VIP) memiliki perhitungan harga tiket dan fasilitas yang berbeda, namun tetap diturunkan dari satu class induk yang sama (`Studio`). Selain itu, penggunaan array dua dimensi sangat pas diimplementasikan untuk menyimulasikan denah baris dan kolom kursi bioskop secara mandiri di setiap cabang.
+Aplikasi ini mengimplementasikan beberapa konsep penting dalam pemrograman berorientasi objek (OOP) seperti Class, Object, Atribut, Method Constructor, Method Mutator, Method Accessor, Encapsulation, Inheritance, Polymorphism (Overriding & Overloading), Seleksi, Perulangan, IO Sederhana, Array (1D & 2D), dan Error Handling.
 
-## Struktur Program
+## Penjelasan Kode
 
-| Paket (Package) | File Class | Keterangan |
-|---|---|---|
-| `NontonFilm21Online` | `main.java` | Program utama (Controller) dengan menu interaktif, Scanner IO, looping, dan Try-Catch. |
-| `NontonFilm21Online.User` | `User.java` | Mengelola data personal pengguna seperti Nama dan Saldo dompet digital. |
-| `NontonFilm21Online.Bioskop` | `CabangBioskop.java` | Mengelola data lokasi cabang bioskop dan daftar studio di dalamnya. |
-| | `Film.java` | Menyimpan data film (Judul, Harga Dasar) dan melacak statistik tren film populer. |
-| | `Studio.java` | Class abstract (induk) — mengelola inisialisasi dan manipulasi denah kursi via Array 2D. |
-| | `StudioReguler.java` | Turunan dari Studio — meng-override perhitungan harga untuk tiket kelas reguler. |
-| | `StudioVip.java` | Turunan dari Studio — meng-override perhitungan harga dengan tambahan biaya fasilitas VIP. |
-| `NontonFilm21Online.Transaksi` | `Transaksi.java` | Memproses validasi pembayaran, pengurangan saldo pengguna, dan pencetakan struk tiket resmi. |
-| | `SaldoKurangException.java`| Custom Exception untuk menangani error handling ketika saldo user tidak mencukupi. |
+Berikut adalah bagian kode yang relevan dengan konsep OOP yang dijelaskan:
 
-## Cara Menjalankan
+1. **Class** adalah template atau blueprint dari object. Pada kode ini, `User`, `Studio`, `Transaksi`, dan `main` adalah contoh dari class.
 
-1. Ekstrak atau clone repositori ini ke komputer Anda.
-2. Buka proyek menggunakan IDE NetBeans.
-3. Klik kanan pada proyek `NontonFilm21` -> Pilih **Clean and Build**.
-4. Jalankan file `main.java` yang berada di dalam paket `NontonFilm21Online`.
-5. Ikuti panduan menu interaktif yang tampil di layar terminal/output.
+```java
+public class User {
+    ...
+}
 
-## Tabel Penilaian (Self-Assessment)
+public abstract class Studio {
+    ...
+}
 
-| No | Materi | Bobot | Bukti Implementasi | Nilai |
-|---|---|---|---|---|
-| 1 | Class | 5 | Pembuatan class terpisah seperti `User`, `Film`, `CabangBioskop`, `Studio`, `StudioReguler`, `StudioVip`, `Transaksi`, dan `main`. | 5 |
-| 2 | Object | 5 | Instansiasi objek user (`new User(...)`), objek film, objek studio, serta objek transaksi di dalam `main.java`. | 5 |
-| 3 | Atribut | 5 | Atribut seperti `nama`, `saldo`, `judul`, `hargaDasar`, dan `kursi` dideklarasikan dengan modifier akses yang aman (`private` / `protected`). | 5 |
-| 4 | Constructor | 5 | Implementasi constructor di setiap class untuk inisialisasi data awal, termasuk pemanggilan `super(...)` pada subclass studio. | 5 |
-| 5 | Mutator | 5 | Method `setSaldo()` pada class `User` untuk memotong/menambah saldo, dan `tambahPenonton()` pada class `Film`. | 5 |
-| 6 | Accessor | 5 | Method getter seperti `getNama()`, `getSaldo()`, `getJudul()`, `getNamaStudio()`, dan `getFilm()`. | 5 |
-| 7 | Encapsulation | 5 | Semua atribut diset `private`/`protected` dan hanya bisa diakses atau diubah secara aman melalui metode getter dan setter. | 5 |
-| 8 | Inheritance | 5 | Class `StudioReguler` dan `StudioVip` menjadi subclass yang mewarisi seluruh sifat dari abstract class `Studio` (`extends Studio`). | 5 |
-| 9 | Polymorphism | 10 | *Overriding* pada method `hitungHargaTiket()` yang diimplementasikan secara berbeda antara `StudioReguler` dan `StudioVip`. | 10 |
-| 10 | Seleksi | 5 | Penggunaan `switch-case` untuk kontrol menu utama dan `if-else` untuk validasi ketersediaan kursi serta kecukupan saldo. | 5 |
-| 11 | Perulangan | 5 | Penggunaan loop `while` untuk menjaga program tetap berjalan, dan *nested for loop* (perulangan bertingkat) untuk mencetak denah kursi matriks. | 5 |
-| 12 | IO Sederhana | 10 | Menggunakan `Scanner` untuk menerima input pilihan menu, nomor cabang, dan kode kursi, serta `System.out.println` untuk mencetak struk tiket. | 10 |
-| 13 | Array | 15 | Menggunakan Array 1D untuk daftar studio dan cabang, serta **Array 2D (`char[][] kursi`)** untuk merepresentasikan denah tata ruang kursi bioskop. | 15 |
-| 14 | Error Handling | 15 | Menggunakan blok `try-catch` untuk menangani salah input tipe data pada menu dan menangkap custom exception `SaldoKurangException`. | 15 |
-| **TOTAL** | | **100** | | **100** |
+public class Transaksi {
+    ...
+}
+
+public class main {
+    ...
+}
+
+Object adalah instance dari class. Pada kode ini, User user = new User("Muhammad Rifky", 100000); dan studioBJM[0] = new StudioVip(film1); adalah contoh pembuatan object.
+
+Java
+User user = new User("Muhammad Rifky", 100000);
+daftarCabang[0] = new CabangBioskop("CineMax - Banjarmasin (BJM)", studioBJM);
+Atribut adalah variabel yang ada dalam class. Pada kode ini, nama, saldo, judul, dan matriks kursi adalah contoh atribut.
+
+Java
+private String nama;
+private double saldo;
+private String judul;
+protected char[][] kursi;
+Constructor adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class User, Studio, dan subclass seperti StudioVip.
+
+Java
+public User(String nama, double saldo) {
+    this.nama = nama;
+    this.saldo = saldo;
+}
+
+public StudioVip(Film film) {
+    super("Studio VIP (Include Snack)", film);
+}
+Mutator atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, setSaldo di class User dan tambahPenonton di class Film adalah contoh method mutator.
+
+Java
+public void setSaldo(double saldo) {
+    this.saldo = saldo;
+}
+
+public void tambahPenonton() {
+    this.jumlahPenonton++;
+}
+Accessor atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, getNama, getSaldo, getJudul, dan getNamaStudio adalah contoh method accessor.
+
+Java
+public String getNama() { 
+    return nama; 
+}
+
+public double getSaldo() { 
+    return saldo; 
+}
+Encapsulation adalah konsep menyembuyen data dengan membuat atribut menjadi private atau protected dan hanya bisa diakses melalui method. Pada kode ini, atribut dienkapsulasi agar aman dari perubahan luar secara langsung.
+
+Java
+private String nama;
+private double saldo;
+private String judul;
+Inheritance adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, StudioReguler dan StudioVip mewarisi abstract class Studio dengan sintaks extends.
+
+Java
+public class StudioReguler extends Studio {
+    ...
+}
+
+public class StudioVip extends Studio {
+    ...
+}
+Polymorphism adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, overriding diimplementasikan pada method hitungHargaTiket() di subclass StudioVip dan StudioReguler, sedangkan overloading dicontohkan pada pembuatan constructor bernilai ganda atau method cetak info tambahan.
+
+Java
+// Contoh Overriding di StudioVip
+@Override
+public double hitungHargaTiket() {
+    return getFilm().getHargaDasar() + 25000;
+}
+
+// Contoh Overriding di StudioReguler
+@Override
+public double hitungHargaTiket() {
+    return getFilm().getHargaDasar();
+}
+Seleksi adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi if-else untuk mengecek kecukupan saldo serta validasi koordinat kursi, dan seleksi switch-case untuk navigasi menu utama.
+
+Java
+if (user.getSaldo() < totalHarga) {
+    throw new SaldoKurangException("Transaksi Gagal! Saldo Anda kurang Rp " + (totalHarga - user.getSaldo()));
+}
+
+switch (pilihanMenu) {
+    case 1:
+        // Proses boking tiket
+        break;
+    case 2:
+        // Proses top up saldo
+        break;
+}
+Perulangan adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop while untuk looping menu utama dan nested for loop (perulangan bertingkat) untuk mencetak denah matriks kursi bioskop.
+
+Java
+while (berjalan) {
+    ...
+}
+
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+        System.out.print("[" + kursi[i][j] + "] ");
+    }
+    System.out.println();
+}
+Input Output Sederhana digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class Scanner untuk menerima input pilihan user dan method System.out.println untuk menampilkan output struk tiket resmi.
+
+Java
+Scanner input = new Scanner(System.in);
+System.out.print("Pilih menu (1-3): ");
+int pilihanMenu = input.nextInt();
+
+System.out.println(" Nama Penonton : " + user.getNama());
+System.out.println(" Sisa Saldo    : Rp " + user.getSaldo());
+Array adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Pada kode ini, digunakan Array 1D untuk menampung 12 studio (new Studio[12]) dan 5 cabang bioskop (new CabangBioskop[5]), serta Array 2D (char[][] kursi) untuk denah baris dan kolom tempat duduk.
+
+Java
+Studio[] studioBJM = new Studio[12];
+CabangBioskop[] daftarCabang = new CabangBioskop[5];
+this.kursi = new char[3][4];
+Error Handling digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan blok try-catch untuk menangkap input berkas yang salah dari keyboard serta menangani custom exception SaldoKurangException saat penonton kehabisan saldo uang.
+
+Java
+try {
+    int pilihanMenu = input.nextInt();
+    ...
+} catch (SaldoKurangException e) {
+    System.out.println("\n" + e.getMessage() + "\n");
+} catch (Exception e) {
+    System.out.println("\n[ERROR] Terjadi kesalahan input teks/angka.");
+    input.next();
+}
+Usulan nilai
+No	Materi	Nilai
+1	Class	5
+2	Object	5
+3	Atribut	5
+4	Constructor	5
+5	Mutator	5
+6	Accessor	5
+7	Encapsulation	5
+8	Inheritance	5
+9	Polymorphism	10
+10	Seleksi	5
+11	Perulangan	5
+12	IO Sederhana	10
+13	Array	15
+14	Error Handling	15
+TOTAL	100
+  
+Pembuat
+  
+Nama: Muhammad Rifky
+NPM: 2410010072
