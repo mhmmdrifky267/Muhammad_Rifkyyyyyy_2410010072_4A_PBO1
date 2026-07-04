@@ -8,15 +8,31 @@ Aplikasi ini menerima input berupa pilihan lokasi cabang bioskop, pilihan film, 
 
 Aplikasi ini mengimplementasikan beberapa konsep penting dalam pemrograman berorientasi objek (OOP) seperti Class, Object, Atribut, Method Constructor, Method Mutator, Method Accessor, Encapsulation, Inheritance, Polymorphism (Overriding & Overloading), Seleksi, Perulangan, IO Sederhana, Array (1D & 2D), dan Error Handling.
 
+## Struktur Proyek
+
+```bash
+NontonFilm21Online/
+├── Bioskop/
+│   ├── CabangBioskop.java
+│   ├── Film.java
+│   ├── Studio.java
+│   ├── StudioReguler.java
+│   └── StudioVip.java
+├── Transaksi/
+│   ├── SaldoKurangException.java
+│   └── Transaksi.java
+├── User/
+│   └── User.java
+└── main.java
+```
+
 ## Penjelasan Kode
 
 Berikut adalah bagian kode yang relevan dengan konsep OOP yang dijelaskan:
 
-### 1. Class
+1. **Class** adalah template atau blueprint dari object. Pada kode ini, `User`, `Studio`, `Transaksi`, dan `main` adalah contoh dari class.
 
-Class adalah template atau blueprint dari object. Pada kode ini, `User`, `Studio`, `Transaksi`, dan `main` adalah contoh dari class.
-
-```java
+```bash
 public class User {
     ...
 }
@@ -34,31 +50,25 @@ public class main {
 }
 ```
 
-### 2. Object
+2. **Object** adalah instance dari class. Pada kode ini, `User user = new User("Muhammad Rifky", 100000);` dan `studioBJM[0] = new StudioVip(film1);` adalah contoh pembuatan object.
 
-Object adalah instance dari class. Pada kode ini, `User user = new User("Muhammad Rifky", 100000);` dan `studioBJM[0] = new StudioVip(film1);` adalah contoh pembuatan object.
-
-```java
+```bash
 User user = new User("Muhammad Rifky", 100000);
 daftarCabang[0] = new CabangBioskop("CineMax - Banjarmasin (BJM)", studioBJM);
 ```
 
-### 3. Atribut
+3. **Atribut** adalah variabel yang ada dalam class. Pada kode ini, `nama`, `saldo`, `judul`, dan matriks kursi adalah contoh atribut.
 
-Atribut adalah variabel yang ada dalam class. Pada kode ini, `nama`, `saldo`, `judul`, dan matriks kursi adalah contoh atribut.
-
-```java
+```bash
 private String nama;
 private double saldo;
-private String judul;
+private final String judul;
 protected char[][] kursi;
 ```
 
-### 4. Constructor
+4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `User`, `Studio`, dan subclass seperti `StudioVip`.
 
-Constructor adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `User`, `Studio`, dan subclass seperti `StudioVip`.
-
-```java
+```bash
 public User(String nama, double saldo) {
     this.nama = nama;
     this.saldo = saldo;
@@ -69,11 +79,9 @@ public StudioVip(Film film) {
 }
 ```
 
-### 5. Mutator
+5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setSaldo` di class `User` dan `tambahPenonton` di class `Film` adalah contoh method mutator.
 
-Mutator atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setSaldo` di class `User` dan `tambahPenonton` di class `Film` adalah contoh method mutator.
-
-```java
+```bash
 public void setSaldo(double saldo) {
     this.saldo = saldo;
 }
@@ -83,35 +91,26 @@ public void tambahPenonton() {
 }
 ```
 
-### 6. Accessor
+6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `getNama`, `getSaldo`, `getJudul`, dan `getNamaStudio` adalah contoh method accessor.
 
-Accessor atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `getNama`, `getSaldo`, `getJudul`, dan `getNamaStudio` adalah contoh method accessor.
-
-```java
-public String getNama() { 
-    return nama; 
-}
-
-public double getSaldo() { 
-    return saldo; 
-}
+```bash
+public String getNama() { return nama; }
+public double getSaldo() { return saldo; }
+public String getJudul() { return judul; }
+public String getNamaStudio() { return namaStudio; }
 ```
 
-### 7. Encapsulation
+7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private atau protected dan hanya bisa diakses melalui method. Pada kode ini, atribut dienkapsulasi agar aman dari perubahan luar secara langsung.
 
-Encapsulation adalah konsep menyembunyikan data dengan membuat atribut menjadi private atau protected dan hanya bisa diakses melalui method. Pada kode ini, atribut dienkapsulasi agar aman dari perubahan luar secara langsung.
-
-```java
+```bash
 private String nama;
 private double saldo;
-private String judul;
+private final String judul;
 ```
 
-### 8. Inheritance
+8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `StudioReguler` dan `StudioVip` mewarisi abstract class `Studio` dengan sintaks `extends`.
 
-Inheritance adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `StudioReguler` dan `StudioVip` mewarisi abstract class `Studio` dengan sintaks `extends`.
-
-```java
+```bash
 public class StudioReguler extends Studio {
     ...
 }
@@ -121,11 +120,9 @@ public class StudioVip extends Studio {
 }
 ```
 
-### 9. Polymorphism
+9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, overriding diimplementasikan pada method `hitungHargaTiket()` di subclass `StudioVip` dan `StudioReguler`.
 
-Polymorphism adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, overriding diimplementasikan pada method `hitungHargaTiket()` di subclass `StudioVip` dan `StudioReguler`, sedangkan overloading dicontohkan pada pembuatan constructor bernilai ganda atau method cetak info tambahan.
-
-```java
+```bash
 // Contoh Overriding di StudioVip
 @Override
 public double hitungHargaTiket() {
@@ -139,35 +136,38 @@ public double hitungHargaTiket() {
 }
 ```
 
-### 10. Seleksi
+10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi if-else untuk mengecek kecukupan saldo serta validasi koordinat kursi, dan seleksi switch (bentuk arrow/lambda) untuk navigasi menu utama.
 
-Seleksi adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi if-else untuk mengecek kecukupan saldo serta validasi koordinat kursi, dan seleksi switch-case untuk navigasi menu utama.
-
-```java
+```bash
 if (user.getSaldo() < totalHarga) {
     throw new SaldoKurangException("Transaksi Gagal! Saldo Anda kurang Rp " + (totalHarga - user.getSaldo()));
 }
 
 switch (pilihanMenu) {
-    case 1:
-        // Proses boking tiket
-        break;
-    case 2:
-        // Proses top up saldo
-        break;
+    case 1 -> {
+        // Proses pilih cabang & boking tiket
+    }
+    case 2 -> {
+        // Proses top-up saldo
+    }
+    case 3 -> {
+        berjalan = false;
+        System.out.println("Terima kasih!");
+    }
+    default -> System.out.println("Pilihan tidak valid!");
 }
 ```
 
-### 11. Perulangan
+11. **Perulangan** adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop `while` untuk looping menu utama dan nested `for` loop (perulangan bertingkat) untuk mencetak denah matriks kursi bioskop.
 
-Perulangan adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop while untuk looping menu utama dan nested for loop (perulangan bertingkat) untuk mencetak denah matriks kursi bioskop.
-
-```java
+```bash
 while (berjalan) {
     ...
 }
 
 for (int i = 0; i < 3; i++) {
+    char baris = (char) ('A' + i);
+    System.out.print(baris + "  ");
     for (int j = 0; j < 4; j++) {
         System.out.print("[" + kursi[i][j] + "] ");
     }
@@ -175,11 +175,9 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 
-### 12. Input Output Sederhana
+12. **Input Output Sederhana** digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk menerima input pilihan user dan method `System.out.println` untuk menampilkan output struk tiket resmi.
 
-Input Output Sederhana digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk menerima input pilihan user dan method `System.out.println` untuk menampilkan output struk tiket resmi.
-
-```java
+```bash
 Scanner input = new Scanner(System.in);
 System.out.print("Pilih menu (1-3): ");
 int pilihanMenu = input.nextInt();
@@ -188,21 +186,17 @@ System.out.println(" Nama Penonton : " + user.getNama());
 System.out.println(" Sisa Saldo    : Rp " + user.getSaldo());
 ```
 
-### 13. Array
+13. **Array** adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Pada kode ini, digunakan Array 1D untuk menampung 12 studio (`new Studio[12]`) dan 5 cabang bioskop (`new CabangBioskop[5]`), serta Array 2D (`char[][] kursi`) untuk denah baris dan kolom tempat duduk.
 
-Array adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Pada kode ini, digunakan Array 1D untuk menampung 12 studio (`new Studio[12]`) dan 5 cabang bioskop (`new CabangBioskop[5]`), serta Array 2D (`char[][] kursi`) untuk denah baris dan kolom tempat duduk.
-
-```java
+```bash
 Studio[] studioBJM = new Studio[12];
 CabangBioskop[] daftarCabang = new CabangBioskop[5];
 this.kursi = new char[3][4];
 ```
 
-### 14. Error Handling
+14. **Error Handling** digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan blok try-catch untuk menangkap input yang salah dari keyboard serta menangani custom exception `SaldoKurangException` saat penonton kehabisan saldo uang.
 
-Error Handling digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan blok try-catch untuk menangkap input yang salah dari keyboard serta menangani custom exception `SaldoKurangException` saat penonton kehabisan saldo uang.
-
-```java
+```bash
 try {
     int pilihanMenu = input.nextInt();
     ...
@@ -214,7 +208,7 @@ try {
 }
 ```
 
-## Usulan Nilai
+## Usulan nilai
 
 | No  | Materi         |  Nilai  |
 | :-: | -------------- | :-----: |
@@ -236,5 +230,5 @@ try {
 
 ## Pembuat
 
-**Nama:** Muhammad Rifky  
-**NPM:** 2410010072
+Nama: Muhammad Rifky
+NPM: 2410010072
