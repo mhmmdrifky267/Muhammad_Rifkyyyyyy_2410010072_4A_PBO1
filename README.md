@@ -160,22 +160,23 @@ try {
     input.next();
 }
 Usulan nilai
-No	Materi	Nilai
-1	Class	5
-2	Object	5
-3	Atribut	5
-4	Constructor	5
-5	Mutator	5
-6	Accessor	5
-7	Encapsulation	5
-8	Inheritance	5
-9	Polymorphism	10
-10	Seleksi	5
-11	Perulangan	5
-12	IO Sederhana	10
-13	Array	15
-14	Error Handling	15
-TOTAL	100
+| No  | Materi         |  Nilai  |
+| :-: | -------------- | :-----: |
+|  1  | Class          |    5    |
+|  2  | Object         |    5    |
+|  3  | Atribut        |    5    |
+|  4  | Constructor    |    5    |
+|  5  | Mutator        |    5    |
+|  6  | Accessor       |    5    |
+|  7  | Encapsulation  |    5    |
+|  8  | Inheritance    |    5    |
+|  9  | Polymorphism   |   10    |
+| 10  | Seleksi        |    5    |
+| 11  | Perulangan     |    5    |
+| 12  | IO Sederhana   |   10    |
+| 13  | Array          |   15    |
+| 14  | Error Handling |   15    |
+|     | **TOTAL**      | **100** |
   
 Pembuat
   
